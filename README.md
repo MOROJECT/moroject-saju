@@ -2,7 +2,7 @@
 
 생년월일시로 오늘의 운세·이번주 운세·평생 사주를 보는 정적 웹앱입니다.
 
-**https://sungjune1437.github.io/moroject-saju/**
+**https://moroject.github.io/moroject-saju/**
 
 - 서버가 없습니다. 계산은 전부 브라우저 안에서 일어납니다
 - 넣은 생년월일시는 **어디에도 전송되지 않고 저장되지 않습니다**
