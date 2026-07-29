@@ -61,18 +61,14 @@
   태어난 시각을 모르면 그대로 두세요. 시(時)만 빠지고 나머지는 볼 수 있습니다.
 </p>
 
-<nav id="tabs" hidden>
-  <button type="button" data-tab="now" class="on">오늘·이번주</button>
-  <button type="button" data-tab="me">내 사주</button>
-  <button type="button" data-tab="deep">자세히</button>
-  <button type="button" data-tab="split">갈릴 수 있어요<span id="splitcount" class="badge"></span></button>
-</nav>
-
+<!-- 탭을 쓰지 않는다. iframe 높이가 고정인데 탭마다 내용 높이가 달라서
+     남는 공간이 커다란 여백으로 보였다. 한 페이지로 이어 두면 높이가 하나로
+     정해지므로 iframe 높이를 정확히 맞출 수 있다. -->
 <main>
   <div id="panel-now"   class="panel" hidden></div>
+  <div id="panel-split" class="panel" hidden></div>
   <div id="panel-me"    class="panel" hidden></div>
   <div id="panel-deep"  class="panel" hidden></div>
-  <div id="panel-split" class="panel" hidden></div>
 </main>
 
 <footer>

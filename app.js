@@ -123,7 +123,7 @@
       h('p', 'closing', esc(C.intro.closing)) +
       (s.warnings.length ? h('p', 'crossref',
         '⚠ 태어난 시각이 경계에 걸려 <b>사주가 갈릴 수 있습니다.</b> ' +
-        '“갈릴 수 있어요” 탭을 봐주세요.') : '');
+        '바로 아래에서 이유를 확인하세요.') : '');
   }
 
   
@@ -317,20 +317,8 @@
 
   
 
-  var PANELS = { now: nowPanel, me: mePanel, deep: deepPanel, split: splitPanel };
 
-  function showTab(name) {
-    Object.keys(PANELS).forEach(function (k) {
-      $('panel-' + k).hidden = (k !== name);
-    });
-    Array.prototype.forEach.call($('tabs').querySelectorAll('button'), function (b) {
-      b.classList.toggle('on', b.dataset.tab === name);
-    });
-  }
-
-  Array.prototype.forEach.call(document.querySelectorAll('#tabs button'), function (b) {
-    b.addEventListener('click', function () { showTab(b.dataset.tab); });
-  });
+  var PANELS = { now: nowPanel, split: splitPanel, me: mePanel, deep: deepPanel };
 
   
 
@@ -366,19 +354,17 @@
         warnings: window.Ambiguity.detect(input, withSolar, withoutSolar)
       };
     } catch (e) {
-      $('tabs').hidden = true;
       $('panel-now').hidden = false;
       $('panel-now').innerHTML = h('p', 'err', '계산에 실패했습니다: ' + esc(e.message));
       return;
     }
 
     Object.keys(PANELS).forEach(function (k) {
-      $('panel-' + k).innerHTML = PANELS[k]();
+      var el = $('panel-' + k);
+      el.innerHTML = PANELS[k]();
+      el.hidden = false;
     });
-    $('splitcount').textContent = state.warnings.length ? String(state.warnings.length) : '';
-    $('tabs').hidden = false;
-    showTab('now');
-    $('tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    $('panel-now').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   $('form').addEventListener('submit', function (e) { e.preventDefault(); render(); });
