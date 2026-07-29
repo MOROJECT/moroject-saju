@@ -1,0 +1,14 @@
+이 사이트는 아래 제3자 구성요소를 포함합니다.
+
+1) lunar-javascript (MIT) — https://github.com/6tail/lunar-javascript
+   만세력·절기 계산. vendor/lunar.js, 라이선스 전문 vendor/LICENSE-lunar-javascript
+
+2) be-realdeveloper/saju (MIT) — https://github.com/be-realdeveloper/saju
+   사주 계산 엔진(팔자·십신·오행·격국·용신·대운). vendor/saju.js
+   해석 사전 references/interpretation.md 의 구조를 참고했습니다.
+   Copyright (c) 2026 B개발자 (be-realdeveloper) contributors
+
+3) IANA tzdata — 한국 표준시 전환 이력. seoul-tz.js 로 프로그램 추출
+
+그 밖의 해석 문안, 오늘의 운세 판정 로직, 갈림 경고, 화면 구성은
+© 2026 모로젝트의 저작물이며 무단 복제·재배포를 금합니다.
