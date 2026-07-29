@@ -12,6 +12,19 @@
   if (window.SEOUL_TZ) window.Ambiguity.loadTz(window.SEOUL_TZ);
   $('disclaimer').textContent = C.disclaimer;
 
+
+
+
+
+  try {
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('embedded');
+    }
+  } catch (e) {
+    document.documentElement.classList.add('embedded');
+  }
+
+
   $('glossary-body').innerHTML = Object.keys(C.plain).map(function (k) {
     return '<dt>' + esc(k) + '</dt><dd>' + esc(C.plain[k]) + '</dd>';
   }).join('');
@@ -27,6 +40,13 @@
   function section(title, body, note) {
     return h('section', null, h('h2', null, esc(title)) +
       (note ? h('p', 'note', note) : '') + body);
+  }
+
+  
+  function foldSection(title, body, note, open) {
+    return '<details class="fold"' + (open ? ' open' : '') + '>' +
+      '<summary>' + esc(title) + '</summary>' +
+      (note ? h('p', 'note', note) : '') + body + '</details>';
   }
   function card(title, body, extra) {
     return h('div', 'card', h('h3', null, esc(title)) +
@@ -154,6 +174,7 @@
         tip ? h('p', 'tip', '가까이 두면 좋은 것: ' + esc(tip)) : '');
     }
 
+
     var counts = chart.counts, order = ['木', '火', '土', '金', '水'];
     var label = { 木: '나무', 火: '불', 土: '흙', 金: '쇠', 水: '물' };
     var max = Math.max.apply(null, order.map(function (k) { return counts.ohaeng[k]; })) || 1;
@@ -189,6 +210,7 @@
         term('격국') + ')');
     }
 
+
     var groups = ['비겁', '식상', '재성', '관성', '인성'];
     var meaning = { 비겁: '나·동료·경쟁', 식상: '표현·재능', 재성: '돈·실물',
                     관성: '직장·책임', 인성: '공부·문서' };
@@ -210,8 +232,9 @@
       var mf = C.missingShipsin[g];
       if (mf) sb += card(mf.title, esc(mf.body));
     });
-    body += section('영역별 에너지', sb,
-      term('십신') + ' — 돈·직장·공부·표현 같은 인생 영역의 세기입니다.');
+    body += foldSection('영역별 에너지', sb,
+      term('십신') + ' — 돈·직장·공부·표현 같은 인생 영역의 세기입니다.', true);
+
 
     var pk = ['year', 'month', 'day', 'hour'];
     var prow = pk.map(function (k) {
@@ -224,12 +247,13 @@
         h('td', null, esc(ships || '—')) +
         h('td', null, esc(m.unseong || '—')));
     }).join('');
-    body += section('네 자리가 맡는 영역',
+    body += foldSection('네 자리가 맡는 영역',
       h('div', 'scroll', h('table', null,
         '<thead><tr><th>자리</th><th>맡는 곳</th><th>영역·시기</th><th>' +
         '에너지</th><th>단계</th></tr></thead>' + h('tbody', null, prow))),
       '같은 기운도 <b>어느 자리에 있느냐</b>에 따라 인생의 다른 영역으로 나타납니다. (' +
       term('궁위') + ')');
+
 
     var seen = {};
     Object.keys(chart.result.manse || {}).forEach(function (k) {
@@ -240,18 +264,20 @@
       ? names.map(function (x) { return card(x, esc(C.shinsal[x] || '이 사주에 나타난 기운입니다.')); }).join('') +
         h('p', 'note', '이건 양념입니다. 이것만으로 좋다 나쁘다 하지 않습니다.')
       : h('p', 'ok', '두드러진 것이 잡히지 않았습니다.');
-    body += section('특별한 기운', nb, term('신살'));
+    body += foldSection('특별한 기운', nb, term('신살'));
+
 
     var watch = [];
     Object.keys(counts.ohaeng).forEach(function (k) {
       var g = counts.ohaengGrade[k];
       if (g === '없음' || g === '과다') watch.push([k, g]);
     });
-    body += section('몸에서 챙길 곳',
+    body += foldSection('몸에서 챙길 곳',
       watch.length
         ? watch.map(function (p) { return card(p[0] + ' ' + p[1], esc(C.health[p[0]] || '')); }).join('')
         : h('p', 'ok', '크게 치우친 기운이 없습니다.'),
       '치우친 기운에 해당하는 <b>관리 포인트</b>까지만 봅니다. 병을 진단하지 않습니다.');
+
 
     var dw = chart.daewoon || [];
     if (dw.length) {
@@ -261,7 +287,7 @@
           h('td', 'num', esc(d.startYear) + '년~') +
           h('td', 'han-sm', esc(d.ganZhi)));
       }).join('');
-      body += section('10년 단위 큰 흐름',
+      body += foldSection('10년 단위 큰 흐름',
         h('div', 'scroll', h('table', null,
           '<thead><tr><th>나이</th><th>시기</th><th>기운</th></tr></thead>' +
           h('tbody', null, drow))),

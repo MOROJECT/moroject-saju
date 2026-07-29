@@ -45,6 +45,21 @@ button{grid-column:1/-1;font:inherit;font-size:1rem;font-weight:700;padding:.7re
 button:hover{background:var(--accent2)}
 .hint{color:var(--muted);font-size:.85rem;margin:.9rem 0 0}
 
+:root.embedded, :root.embedded body{background:transparent}
+:root.embedded body{padding-top:1.5rem;padding-bottom:2rem}
+
+.fold{margin:1.6rem 0 0;border:1px solid var(--ring);border-radius:12px;
+  background:var(--card);overflow:hidden}
+.fold>summary{cursor:pointer;padding:.85rem 1.1rem;font-size:1.02rem;font-weight:650;
+  list-style:none;display:flex;align-items:center;justify-content:space-between}
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary::after{content:'＋';color:var(--accent);font-weight:400;font-size:1.1rem}
+.fold[open]>summary::after{content:'－'}
+.fold>summary:hover{color:var(--accent)}
+.fold>*:not(summary){margin-left:1.1rem;margin-right:1.1rem}
+.fold>*:last-child{margin-bottom:1.1rem}
+.fold .note{margin-top:.2rem}
+
 label.wide{grid-column:1/-1}
 .opt{color:var(--muted);font-weight:400;letter-spacing:0}
 input:disabled{opacity:.45;cursor:not-allowed}
