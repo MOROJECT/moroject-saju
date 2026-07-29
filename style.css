@@ -45,8 +45,11 @@ button{grid-column:1/-1;font:inherit;font-size:1rem;font-weight:700;padding:.7re
 button:hover{background:var(--accent2)}
 .hint{color:var(--muted);font-size:.85rem;margin:.9rem 0 0}
 
+
+:root.embedded{color-scheme:light}
 :root.embedded, :root.embedded body{background:transparent}
 :root.embedded body{padding-top:1.5rem;padding-bottom:2rem}
+
 
 .fold{margin:1.6rem 0 0;border:1px solid var(--ring);border-radius:12px;
   background:var(--card);overflow:hidden}
@@ -64,6 +67,7 @@ label.wide{grid-column:1/-1}
 .opt{color:var(--muted);font-weight:400;letter-spacing:0}
 input:disabled{opacity:.45;cursor:not-allowed}
 
+
 #tabs{display:flex;gap:.4rem;overflow-x:auto;margin:2.5rem 0 0;
   padding-bottom:.5rem;-webkit-overflow-scrolling:touch}
 #tabs button{grid-column:auto;flex:0 0 auto;font-size:.9rem;font-weight:600;
@@ -78,6 +82,7 @@ input:disabled{opacity:.45;cursor:not-allowed}
 .badge:empty{display:none}
 .panel-title{margin:1.8rem 0 .8rem}
 
+
 .intro{margin:1.8rem 0 0;padding:.2rem 0}
 .intro .idate{margin:0 0 .5rem;color:var(--accent);font-size:.82rem;
   letter-spacing:.08em;font-weight:600}
@@ -85,6 +90,7 @@ input:disabled{opacity:.45;cursor:not-allowed}
   letter-spacing:-.02em;line-height:1.45}
 .intro .ilead{margin:.35rem 0 0;color:var(--ink2);font-size:1rem}
 .closing{margin:1.6rem 0 0;color:var(--muted);font-size:.9rem;font-style:normal}
+
 
 .hero{margin:1.8rem 0 0;padding:1.4rem 1.3rem 1.5rem;border-radius:16px;
   background:var(--card);border:1px solid var(--ring);border-left:4px solid var(--muted)}
@@ -99,6 +105,7 @@ input:disabled{opacity:.45;cursor:not-allowed}
 .hero .hmeta{margin:.9rem 0 0;padding-top:.8rem;border-top:1px solid var(--line);
   color:var(--muted);font-size:.83rem}
 .hero .hmeta b{color:var(--ink2)}
+
 
 .week{display:grid;gap:1px;background:var(--ring);border:1px solid var(--ring);
   border-radius:12px;overflow:hidden}

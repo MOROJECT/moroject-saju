@@ -16,12 +16,20 @@
 
 
 
+  function markEmbedded() {
+    var root = document.documentElement;
+    root.classList.add('embedded');
+
+
+
+
+
+    root.setAttribute('data-theme', 'light');
+  }
   try {
-    if (window.self !== window.top) {
-      document.documentElement.classList.add('embedded');
-    }
+    if (window.self !== window.top) markEmbedded();
   } catch (e) {
-    document.documentElement.classList.add('embedded');
+    markEmbedded();
   }
 
 
